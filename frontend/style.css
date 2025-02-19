@@ -1,0 +1,97 @@
+/* General Body and Font Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styling */
+.header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Video Feed Container */
+#video {
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+    display: block;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+/* Dataset Section Styling */
+#dataset {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Dataset Image Styling */
+#dataset img {
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#dataset img:hover {
+    transform: scale(1.1);
+}
+
+/* Footer and General Content Container */
+.content {
+    margin: 30px;
+    text-align: center;
+}
+
+/* Title and Subtitle Styling */
+h2 {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #4CAF50;
+}
+
+p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #video {
+        width: 95%;
+    }
+
+    #dataset img {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* Loading Spinner (Optional for better user experience) */
+#loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: #4CAF50;
+    display: none;
+}
+
+#loading.show {
+    display: block;
+}

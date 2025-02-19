@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Object Detection - YOLO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #video {
+            width: 80%;
+            margin: 20px auto;
+            display: block;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        #dataset {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        #dataset img {
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            font-size: 24px;
+        }
+        .content {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Real-Time Object Detection - YOLO</h1>
+        <p>Live detection and tracking of persons with YOLO and real-time dataset updates</p>
+    </div>
+
+    <div class="content">
+        <h2>Live Video Feed</h2>
+        <img id="video" src="" alt="Live Video Feed" />
+
+        <h2>Detected Persons</h2>
+        <div id="dataset">
+            <!-- Dataset images will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        const videoElement = document.getElementById('video');
+        const datasetElement = document.getElementById('dataset');
+
+        // WebSocket connection for live video feed
+        const socket = new WebSocket('ws://localhost:8000/video_feed');  // Change URL for cloud server
+
+        socket.onmessage = function(event) {
+            // Update video feed with frames from the server
+            videoElement.src = event.data;
+        };
+
+        // Fetch real-time dataset images
+        async function fetchDataset() {
+            const response = await fetch('/dataset');
+            const data = await response.json();
+
+            // Clear and update the dataset images section
+            datasetElement.innerHTML = '';
+
+            data.images.forEach(image => {
+                const imgElement = document.createElement('img');
+                imgElement.src = `Dataset/${image}`;  // Assuming the images are saved under 'Dataset' folder
+                datasetElement.appendChild(imgElement);
+            });
+        }
+
+        // Update the dataset every 3 seconds
+        setInterval(fetchDataset, 3000);  // Adjust the frequency as needed
+    </script>
+
+</body>
+</html>
