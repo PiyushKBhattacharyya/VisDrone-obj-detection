@@ -14,22 +14,33 @@ This is a **real-time person detection web application** that uses **YOLO for ob
 
 ## 🛠 **Installation Guide**
 
-### 1️⃣ **Clone the Repository**
+###  **1.   Clone the Repository**
 ```bash
 git clone 
 cd drone-person-detection
 ```
-### 2️⃣ **Navigate to the Backend**
+### **2.    Navigate to the Backend**
 ```bash
 cd backend
 ```
-### 3️⃣ **Install Dependencies**
+###  **3.   Install Dependencies**
 Ensure you have Python 3.10+ installed. Then, install required packages:
 ```bash
 pip install -r requirements.txt
 ```
-### 4️⃣ **Run the Web App**
+### **4.  Run the Web App**
 Start the FastAPI server using Uvicorn:
 ```bash
 uvicorn app:app --reload
+```
+### **5.  Navigate to the Frontend**
+Navigate to frontend folder:
+```bash
+cd ..
+cd frontend
+```
+### **5.  Run the Web App**
+Navigate the React Server:
+```bash
+npm start
 ```

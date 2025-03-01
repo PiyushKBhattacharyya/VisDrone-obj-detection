@@ -14,7 +14,7 @@ app = FastAPI()
 # Allow CORS for frontend integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -50,6 +50,8 @@ def generate_frames():
     # Open webcam (use RTSP URL if needed)
     video_source = 0  # Change this to an RTSP URL if using a drone
     cap = cv2.VideoCapture(video_source)
+    face_id_counter = 0
+    print("Unique person counter reset!")
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -118,6 +120,10 @@ async def root():
 
 @app.get("/video-feed/")
 async def video_feed():
+    global persons_tracker, face_id_counter
+    persons_tracker = []
+    face_id_counter = 0
+    print("Reset unique persons counter on new stream start!")
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
 
 @app.get("/unique-persons/")
